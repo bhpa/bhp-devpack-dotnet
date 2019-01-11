@@ -1,16 +1,25 @@
-﻿using Bhp.VM;
+using Bhp.VM;
 using System;
 
 namespace Bhp.SmartContract.Framework
 {
-    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Constructor)]
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property | AttributeTargets.Constructor, AllowMultiple = true)]
     public class OpCodeAttribute : Attribute
     {
-        public OpCode[] OpCodes { get; }
+        /// <summary>
+        /// opcode
+        /// </summary>
+        public OpCode OpCode { get; }
 
-        public OpCodeAttribute(params OpCode[] opcodes)
+        /// <summary>
+        /// opcode data (can be hex "ab01ab" or ascii "Runtime.Notify")
+        /// </summary>
+        public string OpData { get; }
+
+        public OpCodeAttribute(OpCode opCode, string opData = "")
         {
-            this.OpCodes = opcodes;
+            OpCode = opCode;
+            OpData = opData;
         }
     }
 }
