@@ -10,19 +10,19 @@ namespace Bhp.SmartContract.Framework
         [OpCode(OpCode.SHA256)]
         protected extern static byte[] Sha256(byte[] data);
 
-        [OpCode(OpCode.HASH160)]
+        [Syscall("Bhp.Crypto.Hash160")]
         protected extern static byte[] Hash160(byte[] data);
 
-        [OpCode(OpCode.HASH256)]
+        [Syscall("Bhp.Crypto.Hash256")]
         protected extern static byte[] Hash256(byte[] data);
 
-        [OpCode(OpCode.CHECKSIG)]
+        [Syscall("Bhp.Crypto.CheckSig")]
         protected extern static bool VerifySignature(byte[] signature, byte[] pubkey);
 
-        [OpCode(OpCode.VERIFY)]
+        [Syscall("System.Crypto.Verify")]
         protected extern static bool VerifySignature(byte[] message, byte[] signature, byte[] pubkey);
 
-        [OpCode(OpCode.CHECKMULTISIG)]
+        [Syscall("Bhp.Crypto.CheckMultiSig")]
         protected extern static bool VerifySignatures(byte[][] signature, byte[][] pubkey);
     }
 }
