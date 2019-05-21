@@ -19,16 +19,7 @@
 
         [Syscall("Bhp.Blockchain.GetTransaction")]
         public static extern Transaction GetTransaction(byte[] hash);
-
-        [Syscall("Bhp.Blockchain.GetAccount")]
-        public static extern Account GetAccount(byte[] script_hash);
-
-        [Syscall("Bhp.Blockchain.GetValidators")]
-        public static extern byte[][] GetValidators();
-
-        [Syscall("Bhp.Blockchain.GetAsset")]
-        public static extern Asset GetAsset(byte[] asset_id);
-
+        
         [Syscall("Bhp.Blockchain.GetContract")]
         public static extern Contract GetContract(byte[] script_hash);
     }

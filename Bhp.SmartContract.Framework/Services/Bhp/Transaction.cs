@@ -4,29 +4,17 @@
     {
         public extern byte[] Hash
         {
-            [Syscall("Bhp.Transaction.GetHash")]
+            [Syscall("System.Transaction.GetHash")]
             get;
         }
 
-        public extern byte Type
+        public extern byte[] Script
         {
-            [Syscall("Bhp.Transaction.GetType")]
+            [Syscall("Bhp.Transaction.GetScript")]
             get;
         }
 
         [Syscall("Bhp.Transaction.GetAttributes")]
-        public extern TransactionAttribute[] GetAttributes();
-
-        [Syscall("Bhp.Transaction.GetInputs")]
-        public extern TransactionInput[] GetInputs();
-
-        [Syscall("Bhp.Transaction.GetOutputs")]
-        public extern TransactionOutput[] GetOutputs();
-
-        [Syscall("Bhp.Transaction.GetReferences")]
-        public extern TransactionOutput[] GetReferences();
-
-        [Syscall("Bhp.Transaction.GetUnspentCoins")]
-        public extern TransactionOutput[] GetUnspentCoins();
+        public extern TransactionAttribute[] GetAttributes();        
     }
 }

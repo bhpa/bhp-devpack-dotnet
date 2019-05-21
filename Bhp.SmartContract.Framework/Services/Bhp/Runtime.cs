@@ -4,23 +4,23 @@
     {
         public static extern TriggerType Trigger
         {
-            [Syscall("Bhp.Runtime.GetTrigger")]
+            [Syscall("System.Runtime.GetTrigger")]
             get;
         }
 
         public static extern uint Time
         {
-            [Syscall("Bhp.Runtime.GetTime")]
+            [Syscall("System.Runtime.GetTime")]
             get;
         }
 
-        [Syscall("Bhp.Runtime.CheckWitness")]
+        [Syscall("System.Runtime.CheckWitness")]
         public static extern bool CheckWitness(byte[] hashOrPubkey);
 
-        [Syscall("Bhp.Runtime.Notify")]
+        [Syscall("System.Runtime.Notify")]
         public static extern void Notify(params object[] state);
 
-        [Syscall("Bhp.Runtime.Log")]
+        [Syscall("System.Runtime.Log")]
         public static extern void Log(string message);
     }
 }
