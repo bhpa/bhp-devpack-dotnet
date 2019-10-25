@@ -8,7 +8,13 @@
             get;
         }
 
-        public static extern uint Time
+        public static extern string Platform
+        {
+            [Syscall("System.Runtime.Platform")]
+            get;
+        }
+
+        public static extern ulong Time
         {
             [Syscall("System.Runtime.GetTime")]
             get;

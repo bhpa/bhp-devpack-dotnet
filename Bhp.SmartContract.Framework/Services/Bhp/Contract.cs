@@ -2,23 +2,29 @@
 {
     public class Contract
     {
-        public extern byte[] Script
-        {
-            [Syscall("Bhp.Contract.GetScript")]
-            get;
-        }
-       
-        public extern bool IsPayable
-        {
-            [Syscall("Bhp.Contract.IsPayable")]
-            get;
-        }
-        
-        [Syscall("Bhp.Contract.Create")]
-        public static extern Contract Create(byte[] script, ContractPropertyState contract_property_state);
+        /// <summary>
+        /// Script
+        /// </summary>
+        public readonly byte[] Script;
 
-        [Syscall("Bhp.Contract.Migrate")]
-        public static extern Contract Migrate(byte[] script, ContractPropertyState contract_property_state);
+        /// <summary>
+        /// Has storage
+        /// </summary>
+        public readonly bool HasStorage;
+
+        /// <summary>
+        /// Is payable
+        /// </summary>
+        public readonly bool IsPayable;
+
+        [Syscall("System.Contract.Call")]
+        public static extern object Call(byte[] scriptHash, string method, object[] arguments);
+
+        [Syscall("Bhp.Contract.Create")]
+        public static extern Contract Create(byte[] script, string manifest);
+
+        [Syscall("Bhp.Contract.Update")]
+        public static extern void Update(byte[] script, string manifest);
 
         [Syscall("System.Contract.Destroy")]
         public static extern void Destroy();
