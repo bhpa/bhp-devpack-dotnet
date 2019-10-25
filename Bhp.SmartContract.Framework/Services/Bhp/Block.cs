@@ -1,14 +1,14 @@
 ﻿namespace Bhp.SmartContract.Framework.Services.Bhp
 {
-    public class Block : Header
+    public class Block
     {
-        [Syscall("Bhp.Block.GetTransactionCount")]
-        public extern int GetTransactionCount();
-
-        [Syscall("Bhp.Block.GetTransactions")]
-        public extern Transaction[] GetTransactions();
-
-        [Syscall("Bhp.Block.GetTransaction")]
-        public extern Transaction GetTransaction(int index);
+        public readonly byte[] Hash;
+        public readonly uint Version;
+        public readonly byte[] PrevHash;
+        public readonly byte[] MerkleRoot;
+        public readonly ulong Timestamp;
+        public readonly uint Index;
+        public readonly byte[] NextConsensus;
+        public readonly int TransactionsCount;
     }
 }
