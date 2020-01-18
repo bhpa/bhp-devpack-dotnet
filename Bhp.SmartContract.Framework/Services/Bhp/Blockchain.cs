@@ -1,31 +1,35 @@
-﻿using System.Numerics;
-
-namespace Bhp.SmartContract.Framework.Services.Bhp
+﻿namespace Bhp.SmartContract.Framework.Services.Bhp
 {
     public static class Blockchain
     {
-        [Syscall("System.Blockchain.GetHeight")]
+        [Syscall("Bhp.Blockchain.GetHeight")]
         public static extern uint GetHeight();
 
-        [Syscall("System.Blockchain.GetBlock")]
+        [Syscall("Bhp.Blockchain.GetHeader")]
+        public static extern Header GetHeader(uint height);
+
+        [Syscall("Bhp.Blockchain.GetHeader")]
+        public static extern Header GetHeader(byte[] hash);
+
+        [Syscall("Bhp.Blockchain.GetBlock")]
         public static extern Block GetBlock(uint height);
 
-        [Syscall("System.Blockchain.GetBlock")]
+        [Syscall("Bhp.Blockchain.GetBlock")]
         public static extern Block GetBlock(byte[] hash);
 
-        [Syscall("System.Blockchain.GetTransaction")]
+        [Syscall("Bhp.Blockchain.GetTransaction")]
         public static extern Transaction GetTransaction(byte[] hash);
 
-        [Syscall("System.Blockchain.GetTransactionFromBlock")]
-        public static extern Transaction GetTransactionFromBlock(byte[] blockHash, int txIndex);
+        [Syscall("Bhp.Blockchain.GetAccount")]
+        public static extern Account GetAccount(byte[] script_hash);
 
-        [Syscall("System.Blockchain.GetTransactionFromBlock")]
-        public static extern Transaction GetTransactionFromBlock(uint blockIndex, int txIndex);
+        [Syscall("Bhp.Blockchain.GetValidators")]
+        public static extern byte[][] GetValidators();
 
-        [Syscall("System.Blockchain.GetTransactionHeight")]
-        public static extern BigInteger GetTransactionHeight(byte[] hash);
+        [Syscall("Bhp.Blockchain.GetAsset")]
+        public static extern Asset GetAsset(byte[] asset_id);
 
-        [Syscall("System.Blockchain.GetContract")]
+        [Syscall("Bhp.Blockchain.GetContract")]
         public static extern Contract GetContract(byte[] script_hash);
     }
 }

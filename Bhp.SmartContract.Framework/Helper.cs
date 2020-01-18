@@ -7,7 +7,7 @@ namespace Bhp.SmartContract.Framework
     public static class Helper
     {
         /// <summary>
-        /// Converts byte to byte[] considering the byte as a BigInteger (0x00 at the end)
+        /// Converts byte to byte[].
         /// </summary>
         [Script]
         public extern static byte[] AsByteArray(this byte source);
@@ -134,22 +134,15 @@ namespace Bhp.SmartContract.Framework
         //}
 
         /// <summary>
-        /// Converts byte to byte[].
-        /// </summary>
-        [OpCode(OpCode.PUSH1)]
-        [OpCode(OpCode.LEFT)]
-        public extern static byte[] ToByteArray(this byte source);
-
-        /// <summary>
         /// Converts parameter to sbyte from (big)integer range -128-255; faults if out-of-range.
         /// Examples: 256 -> fault; -1 -> -1 [0xff]; 255 -> -1 [0xff]; 0 -> 0 [0x00]; 10 -> 10 [0x0a]; 127 -> 127 [0x7f]; 128 -> -128 [0x80]
         /// </summary>
         public static sbyte ToSbyte(this BigInteger source)
         {
-            if (source > 127)
+            if(source > 127)
                 source = source - 256;
             Assert(source.Within(-128, 128));
-            return (sbyte)(source + 0);
+            return (sbyte) (source + 0);
         }
 
         /// <summary>
@@ -158,10 +151,10 @@ namespace Bhp.SmartContract.Framework
         /// </summary>
         public static sbyte ToSbyte(this int source)
         {
-            if (source > 127)
+            if(source > 127)
                 source = source - 256;
             Assert(source.Within(-128, 128));
-            return (sbyte)(source + 0);
+            return (sbyte) (source + 0);
         }
 
         /// <summary>
@@ -171,9 +164,9 @@ namespace Bhp.SmartContract.Framework
         public static byte ToByte(this BigInteger source)
         {
             Assert(source.Within(0, 256));
-            if (source > 127)
+            if(source > 127)
                 source = source - 256;
-            return (byte)(source + 0);
+            return (byte) (source + 0);
         }
 
         /// <summary>
@@ -183,9 +176,9 @@ namespace Bhp.SmartContract.Framework
         public static byte ToByte(this int source)
         {
             Assert(source.Within(0, 256));
-            if (source > 127)
+            if(source > 127)
                 source = source - 256;
-            return (byte)(source + 0);
+            return (byte) (source + 0);
         }
 
         [OpCode(OpCode.CAT)]
@@ -215,7 +208,7 @@ namespace Bhp.SmartContract.Framework
         /// </summary>
         public static byte[] Reverse(this byte[] source)
         {
-            for (int k = 0; k < source.Length / 2; k++)
+            for(int k = 0; k< source.Length/2; k++)
             {
                 int m = source.Length - k - 1;
                 byte bg = source[k]; // must store on variable before next assignment
@@ -239,10 +232,10 @@ namespace Bhp.SmartContract.Framework
         [NonemitWithConvert(ConvertMethod.ToBigInteger)]
         public extern static BigInteger ToBigInteger(this string text);
 
-        [Syscall("System.Runtime.Serialize")]
+        [Syscall("Bhp.Runtime.Serialize")]
         public extern static byte[] Serialize(this object source);
 
-        [Syscall("System.Runtime.Deserialize")]
+        [Syscall("Bhp.Runtime.Deserialize")]
         public extern static object Deserialize(this byte[] source);
     }
 }
